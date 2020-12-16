@@ -92,14 +92,7 @@ function TypeSelected(){
 function Lottery() {
   console.log('Lottery');
   
-  const bgm1 = document.querySelector("#hb");       // <audio>
 
-if( ! bgm1.paused ){
-  bgm1.pause();
-}
-else{
-  bgm1.play();
-}
   
   //前回結果をクリア
   ResultClear();
@@ -120,7 +113,8 @@ else{
     //シングルス
     //2人以上選択していないとシングルスは不可
     if(select_member.length < 2){
-      alert("2人以上選択してほしいですぅ・・・");
+      //alert("2人以上選択してほしいですぅ・・・");
+      popupMessage();
       return;
     }
     
@@ -308,6 +302,15 @@ else{
   //ボタンの位置取得
   var $e = $('#lottery');
   var x1 = $e.offset().top;
+  
+  //誕生日チェック
+  const bgm1 = document.querySelector("#hb");
+
+  if(!bgm1.paused ){
+    bgm1.pause();
+  }else{
+    bgm1.play();
+  }
   
   //画面スクロール
   $("html,body").animate({scrollTop:x1});
@@ -609,3 +612,29 @@ function ResultClear(){
   $('div.group_singles').html("");
   $('div.group_reserve').html("");
 }
+
+$(function(){
+  $(".btn-gnavi").on("click", function(){
+    // ハンバーガーメニューの位置を設定
+    var rightVal = 0;
+    if($(this).hasClass("open")) {
+      // 位置を移動させメニューを開いた状態にする
+      rightVal = -300;
+      // メニューを開いたら次回クリック時は閉じた状態になるよう設定
+      $(this).removeClass("open");
+    } else {
+      // メニューを開いたら次回クリック時は閉じた状態になるよう設定
+      $(this).addClass("open");
+    }
+    $("#global-navi").stop().animate({
+      right: rightVal
+    }, 200);
+  });
+});
+
+
+$( function() {
+	$('#sampleButton').click( function () {
+		$('#sampleModal').modal();
+	});
+});
