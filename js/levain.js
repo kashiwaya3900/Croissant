@@ -117,7 +117,7 @@ function Lottery() {
     //シングルス
     //2人以上選択していないとシングルスは不可
     if(select_member.length < 2){
-      OpenModal("えらー","2人以上選択してほしいですぅ・・・");
+      OpenModal(ERROR,MESSAGE_SINGLES_MEM_LACK);
       return;
     }
     
@@ -127,7 +127,7 @@ function Lottery() {
     //メンバ数が奇数の場合は休みの要素を先頭に追加する
     if((shuffle_list.length % 2 ) != 0 ) {
       //奇数の場合
-      shuffle_list.unshift("休み");
+      shuffle_list.unshift(REST);
     }
     
     //組み合わせパターン作成
@@ -144,7 +144,7 @@ function Lottery() {
     //ダブルス
     //4人以上選択していないとダブルスは不可
     if(select_member.length < 4){
-      OpenModal("えらー","4人以上選択してほしいですぅ・・・");
+      OpenModal(ERROR,MESSAGE_DOUBLES_MEM_LACK);
       return;
     }
     
@@ -180,7 +180,7 @@ function Lottery() {
     //メンバ数が奇数の場合は休みの要素を先頭に追加する
     if((shuffle_list.length % 2 ) != 0 ) {
       //奇数の場合
-      shuffle_list.unshift("休み");
+      shuffle_list.unshift(REST);
     }
     
     //組み合わせパターン作成
@@ -208,7 +208,7 @@ function Lottery() {
     var doubles_count = $('[name=group_doubles]').val();
     
     if(singles_count == 0 && doubles_count == 0){
-      OpenModal("えらー","しんぐるすかだぶるすの人数がほしいですぅ・・・");
+      OpenModal(ERROR,MESSAGE_GROUP_MEM_ZERO);
       return;
     }
     
@@ -217,15 +217,11 @@ function Lottery() {
     
     //必要な人数以上選択しているか
     if(select_member.length < minMember){
-      OpenModal("えらー",minMember +  "人以上選択してほしいですぅ・・・");
+      OpenModal(ERROR,minMember +  MESSAGE_GROUP_MEM_LACK);
       return;
     }
     //シャッフル
     var shuffle_list = CreateShuffleList(select_member);
-    
-    //奇数の場合は連結する
-    
-    
     
     var singlesStr = "";
     var doublesStr = "";
@@ -254,7 +250,7 @@ function Lottery() {
     var doubles_count = $('[name=group_doubles]').val();
     
     if(singles_count == 0 && doubles_count == 0){
-      OpenModal("えらー",minMember +  "しんぐるすかだぶるすの人数がほしいですぅ・・・");
+      OpenModal(ERROR,MESSAGE_GROUP_MEM_ZERO);
       return;
     }
     
@@ -263,7 +259,7 @@ function Lottery() {
     
     //必要な人数以上選択しているか
     if(select_member.length < minMember){
-      OpenModal("えらー",minMember +  "人以上選択してほしいですぅ・・・");
+      OpenModal(ERROR,minMember + MESSAGE_GROUP_MEM_LACK);
       return;
     }
     //シャッフル
@@ -327,7 +323,7 @@ function Lottery() {
         bgm1.pause();
       }else{
         bgm1.play();
-        OpenModal("はっぴーばーすでー","ほんじつたんじょうびのひとがいます！\r\nみんなでおいわいしましょう！");
+        OpenModal(HAPPY_BIRTHDAY,MESSAGE_HAPPY_BIRTHDAY);
       }
     }
   }
@@ -390,7 +386,7 @@ function CreateRoundRobin(shuffle_list){
   }
 
   for(i = 0; i < x.length;i++ ){
-    if(x[i] != "休み" &&  y[i] != "休み"){
+    if(x[i] != REST &&  y[i] != REST){
       round_robin.push([x[i], y[i]]);
     }
   }
@@ -403,7 +399,7 @@ function CreateRoundRobin(shuffle_list){
     y.pop();
     
     for(k = 0; k < x.length;k++ ){
-      if(x[k] != "休み" &&  y[k] != "休み"){
+      if(x[k] != REST &&  y[k] != REST){
         round_robin.push([x[k], y[k]]);
       }
     }
@@ -555,7 +551,8 @@ function ResultCreateTeamSingles(player1,order){
   + '</div>'
   + '</div>'
   + '</div>'
-  + '</div>';
+  + '</div>'
+  + '<hr class="line" width="100%" color="#7EB634" noshade>';
   
   return singles;
 }
@@ -596,7 +593,8 @@ function ResultCreateTeamDoubles(player1,player2, order){
   + '</div>'
   + '</div>'
   + '</div>'
-  + '</div>';
+  + '</div>'
+  + '<hr class="line" width="100%" color="#7EB634" noshade>';
   
   return doubles;
 }
@@ -612,7 +610,7 @@ function ResultCreateTeamReserve(player1){
   doubles = '<div class="row">'
   + '<div class="col-3  align-self-center">'
   + '<label class="vs">'
-  + 'ほけつ'
+  + RESERVE
   + '</label>'
   + '</div>'
   + '<div class="col-9">'
@@ -626,7 +624,8 @@ function ResultCreateTeamReserve(player1){
   + '</div>'
   + '</div>'
   + '</div>'
-  + '</div>';
+  + '</div>'
+  + '<hr class="line" width="100%" color="#7EB634" noshade>';
   
   return doubles;
 }
