@@ -37,13 +37,19 @@
 			"birthday": "-"
 		},
 		{
-			"name": "くどう",
+			"name": "さとう(た)",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-"
 		},
 		{
 			"name": "たなか",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-"
+		},
+		{
+			"name": "くどう",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-"
@@ -56,12 +62,6 @@
 		},
 		{
 			"name": "いしかわ",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-"
-		},
-		{
-			"name": "さとう(た)",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-"
@@ -100,7 +100,7 @@
 			"name": "かしわや",
 			"age": 30,
 			"gender": "1",
-			"birthday": "10/22"
+			"birthday": "12/17"
 		},
 		{
 			"name": "さとう(ま)",

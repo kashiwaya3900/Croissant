@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/levain.css">
   <link rel="stylesheet" href="css/hamburger.css">
-  <link rel="stylesheet" href="css/modal.css">
   <link rel="stylesheet" href="css/jquery.bracket.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/hannari.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nicomoji.css">
@@ -33,31 +32,20 @@
   </div>
   <div class="container">
     <h1>「てにすとわたし、　<br/>　どっちがだいじ?」</h1>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <!-- モーダル・ダイアログ -->
+    <div class="modal fade" id="sampleModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onClick="PushClose();">とじる</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-  
     <form name="form">
       <div class="row">
         <div class="col-6">
@@ -115,69 +103,9 @@
       <audio id="hb" preload loop><source src="data/mp3/HappyBirthday.mp3" type="audio/mp3"></audio>
     </div>
     <!-- doubles -->
-    <div class="doubles"> </div>
-    <!--
-      <div class="row">
-        <div class="col-4">
-          <div class="row">
-            <div class="col-12">
-              <div class="centering">
-                <label class="result_member_male">かしわや</label>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="centering">
-                <label class="result_member_male">むとう</label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-4  align-self-center">
-            <label class="vs">VS</label>
-        </div>
-        <div class="col-4">
-          <div class="row">
-            <div class="col-12">
-              <div class="centering">
-                <label class="result_member_male">すだ</label>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="centering">
-                <label class="result_member_male">いしい</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      -->
+    <div class="doubles"></div>
     <!-- singles -->
-    <div class="singles"> </div>
-    <!--
-      <div class="row">
-         <div class="col-4">
-          <div class="row">
-            <div class="col-12">
-              <div class="centering">
-                <label class="result_member_female">のと</label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-4  align-self-center">
-            <label class="vs">VS</label>
-        </div>
-        <div class="col-4">
-          <div class="row">
-            <div class="col-12">
-              <div class="centering">
-                <label class="result_member_female">すずき</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      -->
+    <div class="singles"></div>
     <!-- group -->
     <!-- coach -->
     <div class="group">

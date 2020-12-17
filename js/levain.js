@@ -1,5 +1,6 @@
 var memMap;
 var selectMemMap;
+var isMusicPlay;
 
 Init();
 /**
@@ -7,7 +8,7 @@ Init();
  */
 function Init() {
   console.log('Init');
-  
+  isMusicPlay = true;
   var url = "data/member.json";
   
   $.getJSON(url, (data) => {
@@ -23,7 +24,13 @@ function Init() {
       }else{
         $female_list.append(MemberLabelCreate(list[i].name));
       }
-      memMap.set(list[i].name, list[i].gender);
+      
+      var memInfo = new Object();
+      memInfo.name = list[i].name;
+      memInfo.age = list[i].age;
+      memInfo.gender = list[i].gender;
+      memInfo.birthday = list[i].birthday;
+      memMap.set(list[i].name, memInfo);
     }
   });
 }
@@ -92,14 +99,11 @@ function TypeSelected(){
 function Lottery() {
   console.log('Lottery');
   
-
-  
   //前回結果をクリア
   ResultClear();
   
   //選択メンバーリスト
   var select_member = [];
-  
   var elements = document.getElementsByName("part");
   for (let i=0; i<elements.length; i++){
     if (elements[i].checked){
@@ -113,8 +117,7 @@ function Lottery() {
     //シングルス
     //2人以上選択していないとシングルスは不可
     if(select_member.length < 2){
-      //alert("2人以上選択してほしいですぅ・・・");
-      popupMessage();
+      OpenModal("えらー","2人以上選択してほしいですぅ・・・");
       return;
     }
     
@@ -141,7 +144,7 @@ function Lottery() {
     //ダブルス
     //4人以上選択していないとダブルスは不可
     if(select_member.length < 4){
-      alert("4人以上選択してほしいですぅ・・・");
+      OpenModal("えらー","4人以上選択してほしいですぅ・・・");
       return;
     }
     
@@ -205,7 +208,7 @@ function Lottery() {
     var doubles_count = $('[name=group_doubles]').val();
     
     if(singles_count == 0 && doubles_count == 0){
-      alert("しんぐるすかだぶるすの人数がほしいですぅ・・・");
+      OpenModal("えらー","しんぐるすかだぶるすの人数がほしいですぅ・・・");
       return;
     }
     
@@ -214,7 +217,7 @@ function Lottery() {
     
     //必要な人数以上選択しているか
     if(select_member.length < minMember){
-      alert(minMember +  "人以上選択してほしいですぅ・・・");
+      OpenModal("えらー",minMember +  "人以上選択してほしいですぅ・・・");
       return;
     }
     //シャッフル
@@ -251,7 +254,7 @@ function Lottery() {
     var doubles_count = $('[name=group_doubles]').val();
     
     if(singles_count == 0 && doubles_count == 0){
-      alert("しんぐるすかだぶるすの人数がほしいですぅ・・・");
+      OpenModal("えらー",minMember +  "しんぐるすかだぶるすの人数がほしいですぅ・・・");
       return;
     }
     
@@ -260,7 +263,7 @@ function Lottery() {
     
     //必要な人数以上選択しているか
     if(select_member.length < minMember){
-      alert(minMember +  "人以上選択してほしいですぅ・・・");
+      OpenModal("えらー",minMember +  "人以上選択してほしいですぅ・・・");
       return;
     }
     //シャッフル
@@ -299,24 +302,48 @@ function Lottery() {
     $('div.group_reserve').html(reserveStr);
   }
   
-  //ボタンの位置取得
+  //ボタンの位置取得して画面スクロール
   var $e = $('#lottery');
   var x1 = $e.offset().top;
-  
-  //誕生日チェック
-  const bgm1 = document.querySelector("#hb");
-
-  if(!bgm1.paused ){
-    bgm1.pause();
-  }else{
-    bgm1.play();
-  }
-  
-  //画面スクロール
   $("html,body").animate({scrollTop:x1});
   
-  
+  //誕生日チェック
+  //現在日時取得
+  var nowDate = getNowDateWithString();
+  console.log(nowDate);
+  var isHappy = false;
+  //メンバーMap内チェック
+  if(isMusicPlay){
+    //初回だけ再生
+    memMap.forEach(function (value, key) {
+      if(value.birthday == nowDate){
+        isHappy = true;
+      }
+    });
+    
+    if(isHappy){
+      const bgm1 = document.querySelector("#hb");
+      if(!bgm1.paused ){
+        bgm1.pause();
+      }else{
+        bgm1.play();
+        OpenModal("はっぴーばーすでー","ほんじつたんじょうびのひとがいます！\r\nみんなでおいわいしましょう！");
+      }
+    }
+  }
 
+}
+
+/**
+ * 閉じるボタン
+ */
+function PushClose(){
+  console.log('PushClose');
+  const bgm1 = document.querySelector("#hb");
+  if(!bgm1.paused ){
+    bgm1.pause();
+    isMusicPlay = false;
+  }
 }
 
 /**
@@ -395,8 +422,8 @@ function ResultCreateSingles(player1,player2){
   var gender1;
   var gender2;
   
-   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
-   gender2 = memMap.get(player2) == '0' ? "result_member_male" : "result_member_female";
+   gender1 = memMap.get(player1).gender == '0' ? "result_member_male" : "result_member_female";
+   gender2 = memMap.get(player2).gender == '0' ? "result_member_male" : "result_member_female";
 
   
   singles = '<div class="row">'
@@ -429,7 +456,8 @@ function ResultCreateSingles(player1,player2){
   + '</div>'
   + '</div>'
   + '</div>'
-  + '</div>';
+  + '</div>'
+  + '<hr class="line" width="100%" color="#7EB634" noshade>';
   
   return singles;
 }
@@ -443,11 +471,10 @@ function ResultCreateDoubles(player1,player2,player3,player4){
   var gender3;
   var gender4;
   
-   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
-   gender2 = memMap.get(player2) == '0' ? "result_member_male" : "result_member_female";
-   gender3 = memMap.get(player3) == '0' ? "result_member_male" : "result_member_female";
-   gender4 = memMap.get(player4) == '0' ? "result_member_male" : "result_member_female";
-
+   gender1 = memMap.get(player1).gender == '0' ? "result_member_male" : "result_member_female";
+   gender2 = memMap.get(player2).gender == '0' ? "result_member_male" : "result_member_female";
+   gender3 = memMap.get(player3).gender == '0' ? "result_member_male" : "result_member_female";
+   gender4 = memMap.get(player4).gender == '0' ? "result_member_male" : "result_member_female";
   
   doubles = '<div class="row">'
   + '<div class="col-4">'
@@ -497,7 +524,8 @@ function ResultCreateDoubles(player1,player2,player3,player4){
   + '</div>'
   + '</div>'
   + '</div>'
-  + '</div>';
+  + '</div>'
+  + '<hr class="line" width="100%" color="#7EB634" noshade>';
   
   return doubles;
 }
@@ -508,7 +536,7 @@ function ResultCreateTeamSingles(player1,order){
   //性別を取得
   var gender1;
   
-   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
+   gender1 = memMap.get(player1).gender == '0' ? "result_member_male" : "result_member_female";
   
   singles = '<div class="row">'
   + '<div class="col-3  align-self-center">'
@@ -539,8 +567,8 @@ function ResultCreateTeamDoubles(player1,player2, order){
   var gender1;
   var gender2;
   
-   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
-   gender2 = memMap.get(player2) == '0' ? "result_member_male" : "result_member_female";
+   gender1 = memMap.get(player1).gender == '0' ? "result_member_male" : "result_member_female";
+   gender2 = memMap.get(player2).gender == '0' ? "result_member_male" : "result_member_female";
   
   doubles = '<div class="row">'
   + '<div class="col-3  align-self-center">'
@@ -579,7 +607,7 @@ function ResultCreateTeamReserve(player1){
   //性別を取得
   var gender1;
   
-   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
+   gender1 = memMap.get(player1).gender == '0' ? "result_member_male" : "result_member_female";
   
   doubles = '<div class="row">'
   + '<div class="col-3  align-self-center">'
@@ -633,8 +661,20 @@ $(function(){
 });
 
 
-$( function() {
-	$('#sampleButton').click( function () {
-		$('#sampleModal').modal();
-	});
-});
+function OpenModal(title,message){
+  $('.modal-title').text(title);
+  $('.modal-body').text(message);
+  $('#sampleModal').modal();
+
+}
+
+
+function getNowDateWithString(){
+  var dt = new Date();
+  //var y = dt.getFullYear();
+  var m = ("00" + (dt.getMonth()+1)).slice(-2);
+  var d = ("00" + dt.getDate()).slice(-2);
+  var result = m + "/" + d;
+  
+  return result;
+}
