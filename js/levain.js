@@ -303,6 +303,9 @@ function Lottery() {
   var x1 = $e.offset().top;
   $("html,body").animate({scrollTop:x1});
   
+  //雪
+  FallSnow();
+  
   //誕生日チェック
   //現在日時取得
   var nowDate = getNowDateWithString();
@@ -678,8 +681,8 @@ function getNowDateWithString(){
   return result;
 }
 
-$(document).ready(function(){
-    $(document).snowfall({
+function FallSnow(){
+      $(document).snowfall({
         flakeCount : 40,
         minSize : 1,
         maxSize : 3,
@@ -688,4 +691,9 @@ $(document).ready(function(){
         round : true,
         shadow : true
     });
+}
+
+$(document).ready(function(){
+    FallSnow();
 });
+
