@@ -677,3 +677,16 @@ function getNowDateWithString(){
   
   return result;
 }
+
+$(document).ready(function(){
+    $(document).snowfall({
+        flakeCount : 100,
+        minSize : 1,
+        maxSize : 10,
+        minSpeed : 1,
+        maxSpeed : 3,
+        round : true,
+        shadow : true,
+        image : "images/flake.png"
+    });
+});
