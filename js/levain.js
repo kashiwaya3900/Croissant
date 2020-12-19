@@ -680,7 +680,7 @@ function getNowDateWithString(){
 
 $(document).ready(function(){
     $(document).snowfall({
-        flakeCount : 100,
+        flakeCount : 25,
         minSize : 1,
         maxSize : 10,
         minSpeed : 1,
