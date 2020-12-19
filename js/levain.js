@@ -680,13 +680,12 @@ function getNowDateWithString(){
 
 $(document).ready(function(){
     $(document).snowfall({
-        flakeCount : 25,
+        flakeCount : 40,
         minSize : 1,
-        maxSize : 10,
+        maxSize : 3,
         minSpeed : 1,
         maxSpeed : 3,
         round : true,
-        shadow : true,
-        image : "images/flake.png"
+        shadow : true
     });
 });
