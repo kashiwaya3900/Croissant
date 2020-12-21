@@ -86,10 +86,15 @@ function DisChecked(){
 function TypeSelected(){
   console.log('TypeSelected');
   var radioVal = $("input[name='type']:checked").val();
-  if(radioVal == "singles" || radioVal == "doubles") {
-    $('#type_pattern').hide('slow');
+  if(radioVal == "singles") {
+    $('#doubles_pattern').hide('slow');
+    $('#group_pattern').hide('slow');
+  }else if(radioVal == "doubles") {
+    $('#doubles_pattern').show('slow');
+    $('#group_pattern').hide('slow');
   }else{
-    $('#type_pattern').show('slow');
+    $('#doubles_pattern').hide('slow');
+    $('#group_pattern').show('slow');
   }
 }
 
@@ -112,7 +117,9 @@ function Lottery() {
     }
   }
   
+  //抽選方法を取得する
   var radioVal = $("input[name='type']:checked").val();
+  
   if(radioVal == "singles") {
     //シングルス
     //2人以上選択していないとシングルスは不可
@@ -146,6 +153,12 @@ function Lottery() {
     if(select_member.length < 4){
       OpenModal(ERROR,MESSAGE_DOUBLES_MEM_LACK);
       return;
+    }
+    
+    //総当たりか否か
+    var full = false;
+    if($('[name="doubles_pattern"]').prop('checked')){
+      full = true;
     }
     
     //シャッフル
@@ -187,6 +200,11 @@ function Lottery() {
     var round_robin_list = CreateRoundRobin(shuffle_list);
     
     var doublesStr = "";
+    
+    //最初のプレイヤー
+    var firstPlayer = round_robin_list[0][0];
+    var first = true;
+    
     for (let k=0; k<round_robin_list.length; k++){
       var west = round_robin_list[k][0].split(";");
       var east = round_robin_list[k][1].split(";");
@@ -196,6 +214,16 @@ function Lottery() {
         continue;
       }
       doublesStr = doublesStr + ResultCreateDoubles(west[0],west[1],east[0],east[1]);
+      
+      //総当たりでない場合は全員が1回試合したら終了
+      if(!full){
+        if(!first){
+          if(firstPlayer == round_robin_list[k][0] || firstPlayer == round_robin_list[k][1]){
+            break;
+          }
+        }
+      }
+      first = false;
     }
     
     $('div.doubles').html(doublesStr);
@@ -682,14 +710,17 @@ function getNowDateWithString(){
 }
 
 function FallSnow(){
+      console.log(navigator.hardwareConcurrency);
       $(document).snowfall({
-        flakeCount : 40,
+        flakeCount : 25,
         minSize : 1,
         maxSize : 3,
         minSpeed : 1,
         maxSpeed : 3,
         round : true,
-        shadow : true
+        shadow : true,
+        image : "images/flake.png"
+        
     });
 }
 

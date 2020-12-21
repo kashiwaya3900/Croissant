@@ -16,7 +16,7 @@
   <script type="text/javascript" src="js/snowfall.jquery.min.js"></script>
 </head>
 <body style="background: url(images/tennis.jpg); background-size: contain;">
-  <div id="wrapper">
+  <!--<div id="wrapper">
     <p class="btn-gnavi">
       <span></span>
       <span></span>
@@ -28,7 +28,7 @@
         <li><a href="members.html">めんばー</a></li>
       </ul>
     </nav>
-  </div>
+  </div>-->
   <div class="container">
     <h1>「てにすとわたし、　<br/>　どっちがだいじ?」</h1>
     <!-- モーダル・ダイアログ -->
@@ -40,12 +40,16 @@
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onClick="PushClose();">いわう</button>
             <button type="button" class="btn btn-default" data-dismiss="modal" onClick="PushClose();">とじる</button>
           </div>
         </div>
       </div>
     </div>
+    
+    <!-- 全選択用にform使用 -->
     <form name="form">
+      <!-- メンバー表示 -->
       <div class="row">
         <div class="col-6">
           <ul class="male_list" id="male_list"></ul>
@@ -54,25 +58,58 @@
           <ul class="female_list" id="female_list"></ul>
         </div>
       </div>
+      
+      <!-- 全選択チェックボックス -->
       <div class="row">
         <div class="col-12">
-          <div class="all-select"> <label class="all">
-               <input type="checkbox" name="all" value="" onClick="AllChecked();"/>
-               <span class="select_member">ALL</span>
-             </label> </div>
+          <div class="all-select">
+            <label>
+              <input type="checkbox" name="all" value="" onClick="AllChecked();"/>
+              <span class="select_member">ALL</span>
+            </label>
+          </div>
         </div>
       </div>
     </form>
+    
+    <!-- 抽選タイプ選択 -->
     <div class="row">
       <div class="col-12">
         <div class="form-inline">
-          <div class="select_type"> <input type="radio" name="type" value="singles" id="singles" onclick="TypeSelected();" /><label class="col-3 radio-inline" for="singles"><i class="fas fa-user"></i></label> <input type="radio" name="type" value="doubles" id="doubles" onclick="TypeSelected();" checked="checked" /><label class="col-3 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label> <input type="radio" name="type" value="group" id="group" onclick="TypeSelected();" /><label class="col-3 radio-inline" for="group"><i class="fas fa-users"></i></label> <input type="radio" name="type" value="coach" id="coach" onclick="TypeSelected();" /><label class="col-3 radio-inline" for="coach"><i class="fas fa-file-signature"></i></label> </div>
+          <div class="select_type">
+            <!-- シングルス -->
+            <input type="radio" name="type" value="singles" id="singles" onclick="TypeSelected();" />
+            <label class="col-3 radio-inline" for="singles"><i class="fas fa-user"></i></label> 
+            <!-- ダブルス -->
+            <input type="radio" name="type" value="doubles" id="doubles" onclick="TypeSelected();" checked="checked" />
+            <label class="col-3 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label>
+            <!-- 団体 -->
+            <input type="radio" name="type" value="group" id="group" onclick="TypeSelected();" />
+            <label class="col-3 radio-inline" for="group"><i class="fas fa-users"></i></label>
+            <!-- 采配 -->
+            <input type="radio" name="type" value="coach" id="coach" onclick="TypeSelected();" />
+            <label class="col-3 radio-inline" for="coach"><i class="fas fa-file-signature"></i></label>
+          </div>
         </div>
       </div>
     </div>
+    
+    <!-- 抽選タイプ：ダブルス時 チェックボックス -->
     <div class="row">
       <div class="col-12">
-        <div class="select_type" id="type_pattern">
+        <div class="all-select" id="doubles_pattern">
+          <label>
+            <input type="checkbox" name="doubles_pattern" value="" onClick=""/>
+            <span class="select_member">そうあたり</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 抽選タイプ：団体時、采配時 プルダウン -->
+    <div class="row">
+      <div class="col-12">
+        <div class="select_type" id="group_pattern">
           <label class="col-4">
             <i class="fas fa-user"></i>
             <select id="group_singles" name="group_singles">
@@ -82,29 +119,36 @@
               <option>3</option>
               <option>4</option>
               <option>5</option>
-            </select></label>
-            <label class="col-4">
-              <i class="fas fa-user-friends"></i>
-              <select id="group_doubles" name="group_doubles">
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </label>
-         </div>
+            </select>
+          </label>
+          <label class="col-4">
+            <i class="fas fa-user-friends"></i>
+            <select id="group_doubles" name="group_doubles">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </label>
+        </div>
       </div>
     </div>
+    
+    <!-- 抽選ボタン -->
     <div class="row">
-      <div class="col-12 space"> <button type="button" id="lottery" class="btn btn-primary btn-block lottery" onclick="Lottery();">ちゅうせん</button> </div>
+      <div class="col-12 space">
+        <button type="button" id="lottery" class="btn btn-primary btn-block lottery" onclick="Lottery();">ちゅうせん</button>
+      </div>
       <audio id="hb" preload loop><source src="data/mp3/HappyBirthday.mp3" type="audio/mp3"></audio>
     </div>
-    <!-- doubles -->
-    <div class="doubles"></div>
+    
+    <!-- 抽選結果表示エリア -->
     <!-- singles -->
     <div class="singles"></div>
+    <!-- doubles -->
+    <div class="doubles"></div>
     <!-- group -->
     <!-- coach -->
     <div class="group">

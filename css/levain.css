@@ -135,7 +135,11 @@ li {
   border-color: #7EB634;
 }
 
-#type_pattern {
+#doubles_pattern {
+  display: block;
+}
+
+#group_pattern {
   display: none;
 }
 
@@ -255,4 +259,8 @@ li {
   background-image: -moz-linear-gradient(left, #eee, #777, #eee);
   background-image: -ms-linear-gradient(left, #eee, #777, #eee);
   background-image: -o-linear-gradient(left, #eee, #777, #eee);
+}
+
+.memimage{
+  width: 45%;
 }
