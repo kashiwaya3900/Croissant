@@ -331,9 +331,6 @@ function Lottery() {
   var x1 = $e.offset().top;
   $("html,body").animate({scrollTop:x1});
   
-  //雪
-  FallSnow();
-  
   //誕生日チェック
   //現在日時取得
   var nowDate = getNowDateWithString();
