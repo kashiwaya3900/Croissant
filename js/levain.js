@@ -712,8 +712,8 @@ $(document).ready(function() {
     speed: 15000,
     wind: 200,
     variance: 100,
-    large: 75,
-    small: 25,
+    large: 25,
+    small: 10,
     density: 100,
     transparency: 0.4
   });
