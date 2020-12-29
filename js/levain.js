@@ -706,22 +706,15 @@ function getNowDateWithString(){
   return result;
 }
 
-function FallSnow(){
-      console.log(navigator.hardwareConcurrency);
-      $(document).snowfall({
-        flakeCount : 25,
-        minSize : 1,
-        maxSize : 3,
-        minSpeed : 1,
-        maxSpeed : 3,
-        round : true,
-        shadow : true,
-        image : "images/flake.png"
-        
-    });
-}
-
-$(document).ready(function(){
-    FallSnow();
+$(document).ready(function() {
+  $( 'body' ).flurry({
+    height: 1000,
+    speed: 15000,
+    wind: 200,
+    variance: 100,
+    large: 75,
+    small: 25,
+    density: 100,
+    transparency: 0.4
+  });
 });
-
