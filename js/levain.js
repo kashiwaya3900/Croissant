@@ -352,6 +352,7 @@ function Lottery() {
       }else{
         bgm1.play();
         OpenModal(HAPPY_BIRTHDAY,MESSAGE_HAPPY_BIRTHDAY);
+        $('#hbgif').show('slow');
       }
     }
   }
@@ -363,6 +364,7 @@ function Lottery() {
  */
 function PushClose(){
   console.log('PushClose');
+  $('#hbgif').hide('slow');
   const bgm1 = document.querySelector("#hb");
   if(!bgm1.paused ){
     bgm1.pause();
@@ -708,6 +710,7 @@ function getNowDateWithString(){
 
 $(document).ready(function() {
   $( 'body' ).flurry({
+    character: "❄",
     height: 1000,
     speed: 15000,
     wind: 200,
