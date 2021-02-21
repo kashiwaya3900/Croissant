@@ -32,3 +32,11 @@ li {
   margin-bottom: 5px;
 }
 
+.line {
+  height: 3px;
+  background: #bbb;
+  background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
+  background-image: -moz-linear-gradient(left, #eee, #777, #eee);
+  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
+  background-image: -o-linear-gradient(left, #eee, #777, #eee);
+}

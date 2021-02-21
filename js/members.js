@@ -59,7 +59,7 @@ $(function(){
 $(document).ready(function() {
   $( 'body' ).flurry({
     character: "❄",
-    height: 800,
+    height: 2000,
     speed: 15000,
     wind: 200,
     variance: 100,
