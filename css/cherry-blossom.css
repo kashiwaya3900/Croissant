@@ -42,7 +42,7 @@
   }
   100% {
     opacity: 0;
-    top: 100%;
+    top: 800px;
     transform: rotate(3000deg);
   }
 }
