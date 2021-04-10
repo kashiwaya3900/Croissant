@@ -167,21 +167,52 @@ function Lottery() {
     //組み合わせパターン作成
     var round_robin_list = CreateRoundRobin(shuffle_list);
     
-    //奇数の場合、先頭の値を末尾にも追加
-    if(round_robin_list.length % 2 != 0 ) {
-      round_robin_list.push(round_robin_list[0]);
+    var tmpList = [];
+    for (let i=0; i<round_robin_list.length; i++){
+      tmpList.push(round_robin_list[i][0] + ":" + round_robin_list[i][1]);
     }
     
+    var round_robin_list2 = CreateRoundRobin(tmpList);
+    
+    var tmpList2 = [];
     var doublesStr = "";
-    
-    var count = 0;
-    while (count < round_robin_list.length) {
-      var west = round_robin_list[count];
-      var east = round_robin_list[count + 1];
+    for (let i=0; i<round_robin_list2.length; i++){
+      var east = round_robin_list2[i][0].split(":");
+      var west = round_robin_list2[i][1].split(":");
+      var east1 = east[0];
+      var east2 = east[1];
+      var west1 = west[0];
+      var west2 = west[1];
+      
+      if(east1 == west1 || east1 == west2 || east2 == west1 || east2 == west2){
+        continue;
+      }
+      
+      //tmpList2.push([east1,east2,west1,west2]);
       doublesStr = doublesStr + ResultCreateDoubles(west[0],west[1],east[0],east[1]);
+    }    
     
-      count = count + 2;
+    
+    
+    //奇数の場合、先頭の値を末尾にも追加
+    //if(round_robin_list.length % 2 != 0 ) {
+    //  round_robin_list.push(round_robin_list[0]);
+    //}
+    
+    //var doublesStr = "";
+    
+    for (let i=0; i<tmpList2.length; i++){
+      doublesStr = doublesStr + ResultCreateDoubles(west[0],west[1],east[0],east[1]);
     }
+    
+    //var count = 0;
+    //while (count < round_robin_list.length) {
+    //  var west = round_robin_list[count];
+    //  var east = round_robin_list[count + 1];
+    //  doublesStr = doublesStr + ResultCreateDoubles(west[0],west[1],east[0],east[1]);
+    
+    //  count = count + 2;
+    //}
     
     $('div.doubles').html(doublesStr);
     
@@ -708,6 +739,33 @@ function getNowDateWithString(){
   return result;
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+  // コンテナを指定
+  const section = document.querySelector('.cherry-blossom-container');
+
+  // 花びらを生成する関数
+  const createPetal = () => {
+    const petalEl = document.createElement('span');
+    petalEl.className = 'petal';
+    const minSize = 10;
+    const maxSize = 15;
+    const size = Math.random() * (maxSize + 1 - minSize) + minSize;
+    petalEl.style.width = `${size}px`;
+    petalEl.style.height = `${size}px`;
+    petalEl.style.left = Math.random() * innerWidth + 'px';
+    section.appendChild(petalEl);
+
+    // 一定時間が経てば花びらを消す
+    setTimeout(() => {
+      petalEl.remove();
+    }, 10000);
+  }
+
+  // 花びらを生成する間隔をミリ秒で指定
+  setInterval(createPetal, 300);
+});
+
+/* 雪を降らせる場合は本メソッドを有効化する
 $(document).ready(function() {
   $( 'body' ).flurry({
     character: "❄",
@@ -721,3 +779,4 @@ $(document).ready(function() {
     transparency: 0.4
   });
 });
+*/
