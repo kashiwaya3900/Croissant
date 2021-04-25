@@ -448,8 +448,6 @@ function CreateRoundRobinDoubles(shuffle_list){
     if(x[i] != REST){
       round_robin.push(x[i]);
     }
-  }
-  for(i = 0; i < y.length;i++ ){
     if(y[i] != REST){
       round_robin.push(y[i]);
     }
@@ -466,8 +464,6 @@ function CreateRoundRobinDoubles(shuffle_list){
       if(x[k] != REST){
         round_robin.push(x[k]);
       }
-    }
-    for(k = 0; k < y.length;k++ ){
       if(y[k] != REST){
         round_robin.push(y[k]);
       }
