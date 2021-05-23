@@ -445,10 +445,18 @@ function CreateRoundRobinDoubles(shuffle_list){
   }
 
   for(i = 0; i < x.length;i++ ){
+    /*
     if(x[i] != REST){
       round_robin.push(x[i]);
     }
     if(y[i] != REST){
+      round_robin.push(y[i]);
+    }
+    */
+    if(x[i] == REST || y[i] == REST){
+      console.log(x[i] + ":" + y[i]);
+    }else{
+      round_robin.push(x[i]);
       round_robin.push(y[i]);
     }
   }
@@ -461,10 +469,18 @@ function CreateRoundRobinDoubles(shuffle_list){
     y.pop();
     
     for(k = 0; k < x.length;k++ ){
+      /*
       if(x[k] != REST){
         round_robin.push(x[k]);
       }
       if(y[k] != REST){
+        round_robin.push(y[k]);
+      }
+      */
+      if(x[k] == REST || y[k] == REST){
+        console.log(x[k] + ":" + y[k]);
+      }else{
+        round_robin.push(x[k]);
         round_robin.push(y[k]);
       }
     }
