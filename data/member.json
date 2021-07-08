@@ -57,7 +57,7 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "ごーせん",
+			"name": "とりや",
 			"age": 34,
 			"gender": "0",
 			"birthday": "-",
@@ -86,6 +86,13 @@
 		},
 		{
 			"name": "まつだ",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-",
+			"image": "noimage.jpg"
+		},
+		{
+			"name": "さいとうぶちょう",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
