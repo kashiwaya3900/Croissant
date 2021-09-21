@@ -50,6 +50,13 @@
 			"image": "aiba.jpg"
 		},
 		{
+			"name": "つっちー",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-",
+			"image": "noimage.jpg"
+		},
+		{
 			"name": "めぐろ",
 			"age": 30,
 			"gender": "0",
@@ -57,8 +64,15 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "とりや",
+			"name": "ごーせん",
 			"age": 34,
+			"gender": "0",
+			"birthday": "-",
+			"image": "noimage.jpg"
+		},
+		{
+			"name": "あきはま",
+			"age": 44,
 			"gender": "0",
 			"birthday": "-",
 			"image": "noimage.jpg"
