@@ -11,8 +11,15 @@
 			"name": "むとう",
 			"age": 30,
 			"gender": "0",
-			"birthday": "-",
+			"birthday": "11/14",
 			"image": "mutou.jpg"
+		},
+		{
+			"name": "かしわや",
+			"age": 30,
+			"gender": "0",
+			"birthday": "10/22",
+			"image": "kashiwaya.jpg"
 		},
 		{
 			"name": "あさべ",
@@ -46,11 +53,25 @@
 			"name": "あいば",
 			"age": 30,
 			"gender": "0",
-			"birthday": "-",
+			"birthday": "7/31",
 			"image": "aiba.jpg"
 		},
 		{
-			"name": "つっちー",
+			"name": "つちだて",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-",
+			"image": "noimage.jpg"
+		},
+		{
+			"name": "きたおか",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-",
+			"image": "noimage.jpg"
+		},
+		{
+			"name": "おいかわ",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
@@ -64,13 +85,6 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "ごーせん",
-			"age": 34,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
 			"name": "あきはま",
 			"age": 44,
 			"gender": "0",
@@ -78,11 +92,18 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "さとう(た)",
+			"name": "とりや",
+			"age": 34,
+			"gender": "0",
+			"birthday": "-",
+			"image": "noimage.jpg"
+		},
+		{
+			"name": "さいとう",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
-			"image": "satot.jpg"
+			"image": "noimage.jpg"
 		},
 		{
 			"name": "くどう",
@@ -93,20 +114,6 @@
 		},
 		{
 			"name": "いしかわ",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "まつだ",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "さいとうぶちょう",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
@@ -141,14 +148,7 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "かしわや",
-			"age": 30,
-			"gender": "1",
-			"birthday": "10/22",
-			"image": "kashiwaya.jpg"
-		},
-		{
-			"name": "さとう(ま)",
+			"name": "さとう",
 			"age": 30,
 			"gender": "1",
 			"birthday": "-",
@@ -156,20 +156,6 @@
 		},
 		{
 			"name": "ふじわら",
-			"age": 30,
-			"gender": "1",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "かみもと",
-			"age": 30,
-			"gender": "1",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "ほそかわ",
 			"age": 30,
 			"gender": "1",
 			"birthday": "-",
