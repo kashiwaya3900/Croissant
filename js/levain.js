@@ -129,6 +129,9 @@ function Lottery() {
     //シャッフル
     var shuffle_list = CreateShuffleList(select_member);
     
+    // ペアを作る
+    let pairs = makePairs(names);
+    
     //メンバ数が奇数の場合は休みの要素を先頭に追加する
     if((shuffle_list.length % 2 ) != 0 ) {
       //奇数の場合
@@ -155,6 +158,12 @@ function Lottery() {
     
     //シャッフル
     var shuffle_list = CreateShuffleList(select_member);
+    
+    let pairs = makePairs(shuffle_list);
+    
+    let matches = makeMatches(pairs);
+    // 組み合わせを出力する
+    output(matches);
     
     var memList = shuffle_list;
     //メンバ数が奇数の場合は休みの要素を先頭に追加する
@@ -561,7 +570,60 @@ function Lottery() {
       }
     }
   }
+}
 
+// ペアを作る関数
+function makePairs(names) {
+  // ペアの配列を空にする
+  let pairs = [];
+  // 名前の配列をシャッフルする
+  shuffle(names);
+  // 名前の配列を2つずつ取り出してペアにする
+  for (let i = 0; i < names.length; i += 2) {
+    let pair = [names[i], names[i + 1]];
+    // ペアの配列に追加する
+    pairs.push(pair);
+  }
+  // ペアの配列を返す
+  return pairs;
+}
+
+// 対戦を作る関数
+function makeMatches(pairs) {
+  // 対戦の配列を空にする
+  let matches = [];
+  // ペアの配列をシャッフルする
+  shuffle(pairs);
+  // ペアの配列を2つずつ取り出して対戦にする
+  for (let i = 0; i < pairs.length; i += 2) {
+    let match = [pairs[i], pairs[i + 1]];
+    // 対戦の配列に追加する
+    matches.push(match);
+  }
+  // 対戦の配列を返す
+  return matches;
+}
+
+// 配列をシャッフルする関数（Fisher-Yates法）
+function shuffle(array) {
+  let n = array.length;
+  while (n > 1) {
+    let k = Math.floor(Math.random() * n);
+    n--;
+    let temp = array[n];
+    array[n] = array[k];
+    array[k] = temp;
+  }
+}
+
+function output(matches) {
+  // 試合数をカウントする変数
+  let count = 1;
+  // 対戦の配列をループして出力する
+  for (let match of matches) {
+    console.log(count + "回戦: " + match[0][0] + " & " + match[0][1] + " vs " + match[1][0] + " & " + match[1][1]);
+    count++;
+  }
 }
 
 /**
